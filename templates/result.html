@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        a:link, a:visited {
+          background-color: #f44336;
+          color: white;
+          padding: 15px 25px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+        }
+        a:hover, a:active {
+          background-color: red;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Resultado</title>
+</head>
+<body>
+    <h2>Tabla de Predicciones</h2>
+    <table>
+        <tr>
+            <th>Fecha de Predicción</th>
+            <th>Capital Final (Día Anterior)</th>
+            <th>Compras (Día Anterior)</th>
+            <th>Capital Inicial (Día Anterior)</th>
+            <th>Venta Neta (Día de Predicción)</th>
+        </tr>
+        {% for r in res %}
+        <tr>
+            <td>{{dates[loop.index-1]}}</td>
+            <td>{{cfs[loop.index - 1]|round(2)}}</td>
+            <td>{{cs[loop.index - 1]|round(2)}}</td>
+            <td>{{cis[loop.index - 1]|round(2)}}</td>
+            <td>{{res[loop.index - 1][0]|round(2)}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+<a href="http://localhost:5000/graphic" target="_blank">Gráfica</a>
+
+<form action="http://localhost/day-predictor/formu.html">
+    <input type="submit" value="Regresar">
+</form>
+</body>
+</html>
